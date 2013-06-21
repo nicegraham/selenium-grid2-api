@@ -342,10 +342,10 @@ http://localhost:4444/grid/api/testsession?session=196555
 
 ```
 
-lifecycle-manager
+/lifecycle-manager
 -----------------
 
-The only implemented action is to shutdown the node.
+The only implemented action is to shutdown the hub.
 
 **base url:**
 ```
