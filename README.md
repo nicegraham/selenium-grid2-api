@@ -20,9 +20,16 @@ Grid2 available endpoints:
 
 console
 -------
-/grid/console/
-/grid/beta/console/
+* /grid/console/
+* /grid/beta/console/
 
+This is the default view of the grid, showing the connected nodes and their test slots both free and busy.
+
+**base url:**
+```
+http://localhost:4444/grid/console/
+http://localhost:4444/grid/beta/console/
+```
 
 /grid/register/
 ---------------
@@ -42,16 +49,33 @@ JSON as per https://code.google.com/p/selenium/wiki/DesiredCapabilities
 ```
 http://localhost:4444/grid/register/
 
+```
 
+**response:**
+```
+"ok"
+```
 
+/grid/driver/
+-------------
+
+**base url:**
+```
+http://localhost:4444/grid/driver/
+```
+
+**parameter formats accepted:**
+```
+```
+
+**sample request:**
+```
+http://localhost:4444/grid/driver/
 ```
 
 **response:**
 ```
 ```
-
-/grid/driver/
--------------
 
 /wd/hub
 -------
