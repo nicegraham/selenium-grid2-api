@@ -1,7 +1,8 @@
 selenium-grid2-api
 ==================
 
-This is an attempt to document the Grid2 API endpoints, along with some code to interact with same and give some sample custom proxies, html renderers and capability matchers.
+This is an attempt to document the Grid2 API endpoints, along with some code to interact with same and give some sample 
+custom proxies, html renderers and capability matchers. Oh, and some servlets too. 
 
 
 
