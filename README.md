@@ -1,7 +1,11 @@
 selenium-grid2-api
 ==================
 
-All available endpoints:
+This is an attempt to document the Grid2 API endpoints, along with some code to interact with same and give some sample custom proxies, html renderers and capability matchers.
+
+
+
+Grid2 available endpoints:
 * /grid/console/
 * /grid/beta/console/
 * /grid/register/
@@ -313,8 +317,6 @@ http://localhost:4444/grid/api/testsession?session=196555
 ```
 
 ```
-
-
 
 lifecycle-manager
 -----------------
