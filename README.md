@@ -48,7 +48,6 @@ JSON as per https://code.google.com/p/selenium/wiki/DesiredCapabilities
 **sample request:**
 ```
 http://localhost:4444/grid/register/
-
 ```
 
 **response:**
@@ -161,6 +160,7 @@ Allows you to access resources stored in the server .jar file.
 ```
 http://localhost:4444/grid/resources/
 ```
+
 **parameter formats accepted:**
 ```
 url parameters
@@ -366,4 +366,3 @@ http://localhost:4444/lifecycle-manager?action=shutdown
 ```
 null
 ```
-
