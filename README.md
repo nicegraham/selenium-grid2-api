@@ -198,6 +198,13 @@ http://localhost:4444/grid/api/proxy/
     "id": "http://10.105.140.42:5555"
 }
  
+ or 
+ 
+{
+    "id":"http://10.105.140.42:5555",
+    "isAlive":""
+}
+ 
  or
  
 http://localhost:4444/grid/api/proxy?id=http://10.20.30.40:5555
