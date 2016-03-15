@@ -347,7 +347,14 @@ http://localhost:4444/grid/api/testsession?session=196555
 
 **sample response:**
 ```
-
+{
+    "msg": "slot found !",
+    "success": true,
+    "session": "0c1934c3-ce04-4633-a94e-9c6cccc61e90",
+    "internalKey": "c4434e5d-9a3a-41ec-8ac4-f1fb49eb9b12",
+    "inactivityTime": 19338,
+    "proxyId": "http://172.17.0.5:5555"
+}
 ```
 
 /lifecycle-manager
