@@ -5,8 +5,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHttpEntityEnclosingRequest;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.openqa.selenium.remote.SessionId;
 
 import java.io.BufferedReader;
@@ -30,18 +30,18 @@ public final class GridInfoExtractor {
       BasicHttpEntityEnclosingRequest basicHttpEntityEnclosingRequest = new BasicHttpEntityEnclosingRequest("POST", sessionURL.toExternalForm());
       HttpResponse response = client.execute(host, basicHttpEntityEnclosingRequest);
       if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-        JSONObject object = extractObject(response);
+        JsonObject object = extractObject(response);
         retVal = new GridInfo(object);
       } else {
         System.out.println("Problem connecting to Grid Server");
       }
-    } catch (JSONException | IOException  e) {
+    } catch (IOException  e) {
       throw new RuntimeException("Failed to acquire remote webdriver node and port info", e);
     }
     return retVal;
   }
 
-  private static JSONObject extractObject(HttpResponse resp) throws IOException, JSONException {
+  private static JsonObject extractObject(HttpResponse resp) throws IOException {
     try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resp.getEntity().getContent()))) {
       StringBuilder stringBuilder = new StringBuilder();
       String line;
@@ -49,7 +49,8 @@ public final class GridInfoExtractor {
         stringBuilder.append(line);
       }
       bufferedReader.close();
-      return new JSONObject(stringBuilder.toString());
+      JsonParser parser = new JsonParser();
+      return (JsonObject) parser.parse(stringBuilder.toString());
     } catch (Exception e) {
       System.out.println("error" + e.toString());
     }
