@@ -1,3 +1,23 @@
+# kgston/selenium-grid2-api
+
+This is a fork of [nicegraham/selenium-grid2-api](https://github.com/nicegraham/selenium-grid2-api)
+
+This extension provides Selenium Grid 2 with additional APIs to retrieve all connected nodes and their information.
+
+## Modifications
+
+1. Fixed the JSON library incompatability between the latest version of Selenium Grid 2.53.0 and this extension
+
+## Build
+
+1. Install Maven
+    1. Set up and required proxy settings if required
+1. Run from the project root `mvn clean install` in the command line
+
+## Usage
+
+1. When running the Selenium Grid 2 Hub, append to the command `-servlets "com.seleniumgrid2api.servlet.AllProxiesJsonServlet,com.seleniumgrid2api.servlet.ProxyStatusJsonServlet"`
+
 selenium-grid2-api
 ==================
 
