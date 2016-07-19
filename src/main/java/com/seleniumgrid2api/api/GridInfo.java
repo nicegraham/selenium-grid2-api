@@ -1,7 +1,6 @@
 package com.seleniumgrid2api.api;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -50,20 +49,20 @@ public class GridInfo {
     return success;
   }
 
-  public GridInfo(JSONObject object) {
+  public GridInfo(JsonObject object) {
     try {
-      proxyId = new URL(object.getString("proxyId"));
+      proxyId = new URL(object.get("proxyId").getAsString());
       if ((proxyId.getHost() != null) && (proxyId.getPort() != -1)) {
         host = proxyId.getHost();
         port = proxyId.getPort();
       }
-      internalKey = object.getString("internalKey");
-      session = object.getString("session");
-      inactivityTime = object.getString("inactivityTime");
-      msg = object.getString("msg");
-      success = object.getString("success");
+      internalKey = object.get("internalKey").getAsString();
+      session = object.get("session").getAsString();
+      inactivityTime = object.get("inactivityTime").getAsString();
+      msg = object.get("msg").getAsString();
+      success = object.get("success").getAsString();
 
-    } catch (MalformedURLException | JSONException e) {
+    } catch (MalformedURLException e) {
       System.out.println("Error Parsing Grid Info.");
     }
 

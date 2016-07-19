@@ -1,8 +1,9 @@
 package com.seleniumgrid2api.servlet;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.openqa.grid.common.exception.GridException;
 import org.openqa.grid.internal.ProxySet;
 import org.openqa.grid.internal.Registry;
@@ -42,35 +43,29 @@ public class ProxyStatusJsonServlet extends RegistryBasedServlet {
     response.setContentType("text/json");
     response.setCharacterEncoding("UTF-8");
     response.setStatus(200);
-    JSONObject res;
-    try {
-      res = getResponse();
-      response.getWriter().print(res.toString(4));
-      response.getWriter().close();
-    } catch (JSONException e) {
-      throw new GridException(e.getMessage());
-    }
-
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    response.getWriter().print(gson.toJson(getResponse()));
+    response.getWriter().close();
   }
 
-  private JSONObject getResponse() throws IOException, JSONException {
-    JSONObject requestJSON = new JSONObject();
+  private JsonObject getResponse() throws IOException {
+    JsonObject requestJSON = new JsonObject();
     ProxySet proxies = this.getRegistry().getAllProxies();
     Iterator<RemoteProxy> iterator = proxies.iterator();
-    JSONArray busyProxies = new JSONArray();
-    JSONArray freeProxies = new JSONArray();
+    JsonArray busyProxies = new JsonArray();
+    JsonArray freeProxies = new JsonArray();
     while (iterator.hasNext()) {
       RemoteProxy eachProxy = iterator.next();
+      JsonObject proxyInfo = eachProxy.getOriginalRegistrationRequest().getAssociatedJSON();
       if (eachProxy.isBusy()) {
-        busyProxies.put(eachProxy.getOriginalRegistrationRequest().getAssociatedJSON());
+        busyProxies.add(proxyInfo);
       } else {
-        freeProxies.put(eachProxy.getOriginalRegistrationRequest().getAssociatedJSON());
+        freeProxies.add(proxyInfo);
       }
     }
-    requestJSON.put("BusyProxies", busyProxies);
-    requestJSON.put("FreeProxies", freeProxies);
+    requestJSON.add("BusyProxies", busyProxies);
+    requestJSON.add("FreeProxies", freeProxies);
 
     return requestJSON;
   }
-
 }
